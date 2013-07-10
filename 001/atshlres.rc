@@ -1,0 +1,79 @@
+#include <os2.h>
+#include "atshlres.h"
+
+ICON   ID_MAINPROGRAM   "..\\graphic\\system.ico"
+ICON   IDI_ATSHELL      "..\\graphic\\program.ico"
+ICON   IDI_PROMPT       "..\\graphic\\prompt.ico"
+ICON   IDI_SHUTDOWN     "..\\graphic\\shutdown.ico"
+ICON   IDI_CONFIGURE    "..\\graphic\\progconf.ico"
+ICON   IDI_HELP         "..\\graphic\\help.ico"
+ICON   IDI_QUIT         "..\\graphic\\quit.ico"
+
+
+MENU ID_MAINPROGRAM
+BEGIN
+    MENUITEM "~Launch desktop program",             ID_LAUNCH,     MIS_TEXT
+    MENUITEM "Open ~command prompt\tF3",            ID_PROMPT,     MIS_TEXT
+    MENUITEM SEPARATOR
+    MENUITEM "Configure ~desktop program...",       ID_CONFIGURE,  MIS_TEXT
+    MENUITEM "Configure ~startup program...",       ID_STARTUP,    MIS_TEXT
+    MENUITEM SEPARATOR
+    MENUITEM "Close...",                            ID_QUIT,       MIS_TEXT
+    MENUITEM "~Shut down system...",                ID_SHUTDOWN,   MIS_TEXT
+    MENUITEM SEPARATOR
+    MENUITEM "~Help\tF1",                           ID_HELP,       MIS_TEXT | MIS_HELP
+    MENUITEM "~Product information",                ID_ABOUT,      MIS_TEXT
+END
+
+ACCELTABLE ID_MAINPROGRAM
+BEGIN
+    VK_F3,     ID_PROMPT,       VIRTUALKEY
+END
+
+
+STRINGTABLE
+BEGIN
+    SZ_HELP_WINDOWTITLE                             "ATSHELL (AT Desktop Shell) - Help"
+    SZ_HELP_LOADERROR                               "Unable to load help file %s"
+END
+
+STRINGTABLE
+BEGIN
+    SZ_EXECUTE_TITLE                                "Failed to Start"
+    SZ_EXECUTE_ERROR                                "The application failed to start.\x0d\x0dError severity:\x09 0x%02X\x0dError code:\x09 0x%02X"
+END
+
+STRINGTABLE
+BEGIN
+    SZ_SHUTDOWN_TITLE                               "Confirm Shutdown"
+    SZ_SHUTDOWN_CONFIRM                             "Do you wish to shut down the system?"
+END
+
+STRINGTABLE
+BEGIN
+    SZ_CLOSE_TITLE                                  "Confirm Close"
+    SZ_CLOSE_CONFIRM                                "Closing this window will cause the shell to restart."
+END
+
+STRINGTABLE
+BEGIN
+    SZ_BROWSE_TITLE                                 "Select Program"
+END
+
+HELPTABLE ID_MAINPROGRAM
+BEGIN
+    HELPITEM ID_MAINPROGRAM,                        10000, 010
+    HELPITEM IDD_PROGCONFIG,                        10001, 011
+END
+
+HELPSUBTABLE 10000
+BEGIN
+END
+
+HELPSUBTABLE 10001
+BEGIN
+END
+
+
+RCINCLUDE "atshlres.dlg"
+

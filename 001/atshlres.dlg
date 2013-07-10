@@ -1,0 +1,76 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "atshlres.h"
+/*
+DLGTEMPLATE ID_MAINPROGRAM LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Desktop Shell", ID_MAINPROGRAM, 10, 6, 70, 29, NOT WS_VISIBLE, FCF_TITLEBAR
+    BEGIN
+        DEFPUSHBUTTON   "#2",                               ID_LAUNCH,      3,   2,   31,  24,  BS_ICON
+        PUSHBUTTON      "#4",                               ID_SHUTDOWN,    37,  15,  14,  11,  BS_MINIICON
+        PUSHBUTTON      "#9",                               ID_QUIT,        37,  2,   14,  11,  BS_MINIICON
+        PUSHBUTTON      "#3",                               ID_PROMPT,      53,  15,  14,  11,  BS_MINIICON
+        PUSHBUTTON      "#5",                               ID_CONFIGURE,   53,  2,   14,  11,  BS_MINIICON
+    END
+END
+  */
+
+DLGTEMPLATE ID_MAINPROGRAM LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Desktop Shell", ID_MAINPROGRAM, 6, 6, 150, 28, NOT WS_VISIBLE, FCF_SYSMENU | FCF_CLOSEBUTTON | FCF_TITLEBAR
+    BEGIN
+        ENTRYFIELD      "",                                 ID_STATUS,      34,  16,  111, 7,   ES_READONLY | ES_AUTOSCROLL | /*ES_MARGIN |*/ NOT WS_TABSTOP
+                        PRESPARAMS PP_BACKGROUNDCOLORINDEX, SYSCLR_DIALOGBACKGROUND
+                        PRESPARAMS PP_FOREGROUNDCOLORINDEX, SYSCLR_WINDOWSTATICTEXT
+                        PRESPARAMS PP_FONTNAMESIZE,         "9.WarpSans"
+        CONTROL         "",                                 -1,             32,  15,  115, 9,   WC_STATIC, SS_FGNDFRAME | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLORINDEX, SYSCLR_MENUDISABLEDTEXT
+        DEFPUSHBUTTON   "#2",                               ID_LAUNCH,      3,   2,   26,  22,  BS_ICON | WS_GROUP
+        PUSHBUTTON      "#4",                               ID_SHUTDOWN,    32,  2,   14,  11,  BS_MINIICON
+        PUSHBUTTON      "#3",                               ID_PROMPT,      48,  2,   14,  11,  BS_MINIICON
+        PUSHBUTTON      "#5",                               ID_CONFIGURE,   64,  2,   14,  11,  BS_MINIICON
+    END
+END
+
+DLGTEMPLATE IDD_PROGCONFIG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Configure Program", IDD_PROGCONFIG, 1, 1, 198, 156, WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR | FCF_CLOSEBUTTON
+            PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        LTEXT           "Path and file name:",              -1,             3,   146, 114, 8,   DT_VCENTER
+        ENTRYFIELD      "",                                 IDD_PROGNAME,   5,   137, 188, 7,   ES_MARGIN
+        PUSHBUTTON      "~Browse...",                       IDD_PROGBROWSE, 3,   122, 45,  12
+        GROUPBOX        "Options",                          -1,             3,   18,  192, 101
+        LTEXT           "Parameters:",                      -1,             8,   103, 150, 8,   DT_VCENTER
+        ENTRYFIELD      "",                                 IDD_PROGPARMS,  10,  94,  179, 7,   ES_MARGIN
+        LTEXT           "Working directory:",               -1,             8,   81,  166, 8,   DT_VCENTER
+        ENTRYFIELD      "",                                 IDD_PROGDIR,    10,  72,  179, 7,   ES_MARGIN
+        LTEXT           "Environment variables:",           -1,             8,   59,  159, 8,   DT_VCENTER | NOT WS_VISIBLE
+        COMBOBOX        "",                                 IDD_PROGENV,    8,   22,  138, 36,  WS_GROUP | NOT WS_VISIBLE
+        PUSHBUTTON      "~Add",                             IDD_PROGENVADD, 150, 46,  40,  12,  NOT WS_VISIBLE
+        PUSHBUTTON      "~Delete",                          IDD_PROGENVDEL, 150, 33,  40,  12,  NOT WS_VISIBLE
+        DEFPUSHBUTTON   "~OK",                              DID_OK,         3,   2,   40,  12
+        PUSHBUTTON      "~Cancel",                          DID_CANCEL,     45,  2,   40,  12
+        PUSHBUTTON      "~Help",                            IDD_PROGHELP,   87,  2,   40,  12,  BS_HELP
+    END
+END
+
+DLGTEMPLATE IDD_ABOUT LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Product Information", IDD_ABOUT, 1, 1, 194, 65, WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR | FCF_CLOSEBUTTON
+            PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        ICON            IDI_ATSHELL,                        IDD_ABOUTICON,  8,   45,  20,  16,  WS_GROUP
+        LTEXT           "AT Desktop Shell",                 -1,             38,  53,  150, 8
+        LTEXT           "Version 0.5",                      -1,             38,  44,  75,  8
+        LTEXT           "",                                 IDD_BUILD,      120, 44,  68,  8
+        GROUPBOX        "",                                 -1,             38,  40,  150, 4
+        LTEXT           "(C) 2006 Alex Taylor. All rights reserved.",
+                                                            -1,             38,  27,  150, 8
+        LTEXT           "Licensed under the GNU General Public License.",
+                                                            -1,             38,  18,  150, 8
+        DEFPUSHBUTTON   "~OK",                              DID_OK,         38,  2,   40,  12
+    END
+END
+
