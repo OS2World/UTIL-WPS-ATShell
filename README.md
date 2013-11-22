@@ -9,7 +9,11 @@ LICENSE
 
 COMPILE TOOLS
 ===============
-* 
+* C
+* IBM VisualAge for C++
+* ILINK
+* IBM IPFC
+* IBM RC 
 
 AUTHORS
 ===============
